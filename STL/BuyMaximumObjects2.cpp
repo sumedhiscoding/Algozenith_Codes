@@ -8,28 +8,23 @@ void solve() {
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
 	}
-	sort(arr, arr + n);
-	for (int i = 0; i < n; i++) {
-		cout << arr[i] << " ";
-	}
-	cout << endl;
-
-
-	int pre[n + 1];
+	sort(arr,arr+n);
+	vector<int> pre(n, 0);
 	pre[0] = arr[0];
 	for (int i = 1; i < n; i++) {
 		pre[i] = pre[i - 1] + arr[i];
 	}
-	for (int i = 0; i < n; i++) {
-		cout << pre[i] << " ";
+	for (int i = 0; i < n; ++i)
+	{
+		cout<<pre[i]<<" ";
 	}
-	cout << endl;
-	while (q--) {
+	cout<<endl;
+	while(q--){
 		int m;
-		cin >> m;
-		auto it = upper_bound(arr, arr + n, m);
+		cin>>m;
+		auto idx=upper_bound(pre.begin(),pre.end(),m)-pre.begin();
+		cout<<idx<<endl;
 	}
-
 
 }
 signed main() {
