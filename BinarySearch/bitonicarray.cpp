@@ -20,7 +20,7 @@ void findsolve(int ans, int query, int arr[]) {
 		}
 		if (arr[ans1] != query) {
 			//we need to find it in the other half
-			int lo = ans; int hi = n - 1;
+			int lo = ans; int hi = n - 1;z
 			while (lo <= hi) {
 				int mid = (lo + hi) / 2;
 				if (arr[mid] == query) {
