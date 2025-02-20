@@ -27,28 +27,29 @@ lli binpow(lli b, lli p, lli mod) {lli ans = 1; b %= mod; for (; p; p >>= 1) {if
 //----------------- //
 
 void solve() {
-	string s;
-	cin >> s;
-	stack<char> st;
-	int ans=0;
-	for (auto x : s) {
-		if (x == '(') {
-			st.push('(');
-		}
-		else{
-			if(st.empty()){
-				ans++;
-			}
-			else{
-				st.pop();
-			}
-		}
+	int n, k;
+	cin >> n >> k;
+	multiset<int> ms;
+	vector<int> arr (n,0);
+	for (int i = 0; i < n; ++i)
+	{
+		cin>>arr[i];
 	}
-	while(!st.empty()){
-		ans++;
-		st.pop();
+	for (int i = 0; i < n; i++) {
+		ms.insert(arr[i]);
+		//k=3
+		// i      0   1   2  3  4  5
+		// i-k = -3  -2  -1  0  1  2
+		// if i-k >= 0 we remove the element from the ds
+		if (i - k >= 0) {
+			ms.erase(ms.find(arr[i-k]));
+		}
+		//so we need to print maximum for each window that means once the ds has elements equals to window size
+		// we should print the last element of the ds as it is the maximum one
+		if(ms.size()==k) cout<<*(--ms.end())<<" ";
 	}
-	cout<<ans<<'\n';
+
+	cout<<endl;
 }
 signed main() {
 	fastio();

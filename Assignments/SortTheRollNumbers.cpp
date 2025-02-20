@@ -23,40 +23,42 @@ template <class S, class T>ostream& operator <<(ostream& os, const map<S, T>& p)
 template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n";}
 template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ","; dbs(str.substr(idx + 1), s...);}
 template <class T> void prc(T a, T b) {cerr << "["; for (T i = a; i != b; ++i) {if (i != a) cerr << ", "; cerr << *i;} cerr << "]\n";}
-lli binpow(lli b, lli p, lli mod) {lli ans = 1; b %= mod; for (; p; p >>= 1) {if (p & 1)ans = ans * b % mod; b = b * b % mod;} return ans;}
+lli binpow(lli b,lli p,lli mod){lli ans=1;b%=mod;for(;p;p>>=1){if(p&1)ans=ans*b%mod;b=b*b%mod;}return ans;}
 //----------------- //
+bool comp(const pair<string,int> &a,const pair<string,int> &b){
+	return a.second < b.second;
+ }
+void solve(){
+  	int n;
+  	cin>>n;
+  	// string temp;
+  	// getline(cin,temp);
+  	vector<pair<string,int> > arr(n,{"",0});
+  	for (int i = 0; i < n; ++i)
+  	{
+  		string s;
+  		cin>>s;
+  		int t;
+  		cin>>t;
+  		arr[i].first=s;
+  		arr[i].second=t;
+  	}
+  	// for(auto x:arr){
+  	// 	cout<<x.first<<" "<<x.second<<endl;
+  	// }
+  	sort(all(arr),comp);
+  	for(int i=0;i<n;i++){
+  		cout<<arr[i].first<< " "<< arr[i].second<<endl;
+  	}
 
-void solve() {
-	string s;
-	cin >> s;
-	stack<char> st;
-	int ans=0;
-	for (auto x : s) {
-		if (x == '(') {
-			st.push('(');
-		}
-		else{
-			if(st.empty()){
-				ans++;
-			}
-			else{
-				st.pop();
-			}
-		}
-	}
-	while(!st.empty()){
-		ans++;
-		st.pop();
-	}
-	cout<<ans<<'\n';
 }
-signed main() {
-	fastio();
-	int t;
-	// t=1;
-	cin >> t;
-	while (t--) {
-		solve();
-	}
-	return 0;
+signed main(){
+  fastio();
+  int t;
+  // t=1;  
+  cin>>t;
+  while(t--){
+    solve();
+  }
+  return 0;
 }
